@@ -13,9 +13,9 @@ import Button from "components/atoms/Button";
 import Typography from "components/atoms/Typography";
 import MenuIcon from "components/atoms/MenuIcon";
 
-// import styles from "assets/navbar.module.css";
+import styles from "assets/navbar.module.css";
 
-const pages = ["2020", "2021", "2022", "2023"];
+const years = ["2020", "2021", "2022", "2023"];
 
 function Navbar() {
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
@@ -31,24 +31,24 @@ function Navbar() {
   return (
     <AppBar>
       <Container>
-        <Toolbar>
+        <Toolbar >
           <Box mobile={true}>
             <IconButton callback={handleOpenNavMenu}>
               <MenuIcon />
             </IconButton>
             <Menu anchorElNav={anchorElNav} callback={handleCloseNavMenu}>
-              {pages.map((page) => (
-                <MenuItem key={page} callback={handleCloseNavMenu}>
-                  <Typography>{page}</Typography>
+              {years.map((year) => (
+                <MenuItem key={year} callback={handleCloseNavMenu}>
+                  <Typography>{year}</Typography>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
-          <Box mobile={false}>
+          <Box className={styles.box} mobile={false}>
             <Button callback={handleCloseNavMenu}>Filtro</Button>
-            {pages.map((page) => (
-              <Button key={page} callback={handleCloseNavMenu}>
-                {page}
+            {years.map((year) => (
+              <Button key={year} callback={handleCloseNavMenu}>
+                {year}
               </Button>
             ))}
             <Button callback={handleCloseNavMenu}>Buscar</Button>
