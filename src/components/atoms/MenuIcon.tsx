@@ -1,6 +1,10 @@
 import { default as MenuIconMaterialUI } from "@mui/icons-material/Menu";
 
-function MenuIcon() {
-  return <MenuIconMaterialUI />
+interface IMenu {
+  className?: string;
+}
+
+function MenuIcon({className}: IMenu) {
+  return <MenuIconMaterialUI className={className} />;
 }
 export default MenuIcon;

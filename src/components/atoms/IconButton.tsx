@@ -2,11 +2,12 @@ import { ReactNode } from "react";
 import { default as IconButtonMaterialUI } from "@mui/material/IconButton";
 
 interface IIconButton {
+  className?: string;
   callback: (event: React.MouseEvent<HTMLElement>) => void;
   children: ReactNode;
 }
 
-function IconButton({ children, callback }: IIconButton) {
+function IconButton({ className, children, callback }: IIconButton) {
   return (
     <IconButtonMaterialUI
       size="large"
@@ -15,6 +16,7 @@ function IconButton({ children, callback }: IIconButton) {
       aria-haspopup="true"
       onClick={callback}
       color="inherit"
+      className={className}
     >
       {children}
     </IconButtonMaterialUI>
