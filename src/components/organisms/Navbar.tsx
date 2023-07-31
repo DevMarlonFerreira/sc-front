@@ -15,7 +15,7 @@ import MenuIcon from "components/atoms/MenuIcon";
 
 import styles from "assets/navbar.module.css";
 
-const years = ["2020", "2021", "2022", "2023"];
+const years = ["2023"];
 
 function Navbar() {
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
@@ -45,13 +45,13 @@ function Navbar() {
             </Menu>
           </Box>
           <Box className={styles.box} mobile={false}>
-            <Button callback={handleCloseNavMenu}>Filtro</Button>
+            <Button callback={handleCloseNavMenu}>Boletos</Button>
             {years.map((year) => (
               <Button key={year} callback={handleCloseNavMenu}>
                 {year}
               </Button>
             ))}
-            <Button callback={handleCloseNavMenu}>Buscar</Button>
+            {/* <Button callback={handleCloseNavMenu}>Buscar</Button> */}
           </Box>
         </Toolbar>
       </Container>

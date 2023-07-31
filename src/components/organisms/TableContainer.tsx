@@ -1,38 +1,51 @@
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
+
+import { IInvoice } from "interfaces/invoice.interface";
 
 function createData(
   name: string,
   calories: number,
   fat: number,
   carbs: number,
-  protein: number,
+  protein: number
 ) {
   return { name, calories, fat, carbs, protein };
 }
 
-const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-];
+interface IData {
+  data: IInvoice[];
+}
 
-export default function BasicTable() {
+export default function BasicTable({ data }: IData) {
+  // console.log(data);
+
+  // const clients = data.filter(function (este, i) {
+  //   console.log(este)
+  //   console.log(i)
+  //   return data.indexOf(este) === i;
+  // });
+
+  const clients = data.filter(
+    (value, index, self) =>
+      index === self.findIndex((t) => t.client === value.client)
+  );
+
+  console.log(data);
+
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead>
+        { <TableHead>
           <TableRow>
-            <TableCell>Nome da UC</TableCell>
+            {/* <TableCell>Nome da UC</TableCell> */}
             <TableCell align="right">Número da UC</TableCell>
-            <TableCell align="right">Jan</TableCell>
+            {/* <TableCell align="right">Jan</TableCell>
             <TableCell align="right">Fev</TableCell>
             <TableCell align="right">Mar</TableCell>
             <TableCell align="right">Abr</TableCell>
@@ -43,22 +56,64 @@ export default function BasicTable() {
             <TableCell align="right">Set</TableCell>
             <TableCell align="right">Out</TableCell>
             <TableCell align="right">Nov</TableCell>
-            <TableCell align="right">Dez</TableCell>
+            <TableCell align="right">Dez</TableCell> */}
           </TableRow>
-        </TableHead>
+        </TableHead> }
         <TableBody>
-          {rows.map((row) => (
+          {clients.map((row) => (
             <TableRow
-              key={row.name}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+              key={row.id}
+              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
-              <TableCell component="th" scope="row">
-                {row.name}
-              </TableCell>
-              <TableCell align="right">{row.calories}</TableCell>
-              <TableCell align="right">{row.fat}</TableCell>
-              <TableCell align="right">{row.carbs}</TableCell>
-              <TableCell align="right">{row.protein}</TableCell>
+              {/* <TableCell component="th" scope="row">
+                {row.client}
+              </TableCell> */}
+              <TableCell align="right">{row.client}</TableCell>
+
+              {data.map((item, key) => (
+                <>
+                  {item.referencemonth === "janeiro" && (
+                    <TableCell align="right">{item.referencemonth}</TableCell>
+                  )}
+                  {item.referencemonth === "fevereiro" && (
+                    <TableCell align="right">{item.referencemonth}</TableCell>
+                  )}
+                  {item.referencemonth === "março" && (
+                    <TableCell align="right">{item.referencemonth}</TableCell>
+                  )}
+                  {item.referencemonth === "abril" && (
+                    <TableCell align="right">{item.referencemonth}</TableCell>
+                  )}
+                  {item.referencemonth === "maio" && (
+                    <TableCell align="right">{item.referencemonth}</TableCell>
+                  )}
+                  {item.referencemonth === "junho" && (
+                    <TableCell align="right">{item.referencemonth}</TableCell>
+                  )}
+                  {item.referencemonth === "julho" && (
+                    <TableCell align="right">{item.referencemonth}</TableCell>
+                  )}
+                  {item.referencemonth === "agosto" && (
+                    <TableCell align="right">{item.referencemonth}</TableCell>
+                  )}
+                  {item.referencemonth === "setembro" && (
+                    <TableCell align="right">{item.referencemonth}</TableCell>
+                  )}
+                  {item.referencemonth === "outubro" && (
+                    <TableCell align="right">{item.referencemonth}</TableCell>
+                  )}
+                  {item.referencemonth === "novembro" && (
+                    <TableCell align="right">{item.referencemonth}</TableCell>
+                  )}
+                  {item.referencemonth === "dezemro" && (
+                    <TableCell align="right">{item.referencemonth}</TableCell>
+                  )}
+                </>
+              ))}
+
+              {/* <TableCell align="right">{row.client}</TableCell> */}
+              {/* <TableCell align="right">{row.client}</TableCell>
+              <TableCell align="right">{row.client}</TableCell> */}
             </TableRow>
           ))}
         </TableBody>
